@@ -1,0 +1,445 @@
+{
+  "movies": [
+    {
+      "title": "Inception",
+      "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      "releaseYear": 2010,
+      "genre": "Sci-Fi",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "id": 1
+    },
+    {
+      "title": "The Dark Knight",
+      "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+      "releaseYear": 2008,
+      "genre": "Action",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "id": 2
+    },
+    {
+      "title": "Interstellar",
+      "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+      "releaseYear": 2014,
+      "genre": "Sci-Fi",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "id": 3
+    },
+    {
+      "title": "Oppenheimer",
+      "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II.",
+      "releaseYear": 2023,
+      "genre": "Drama",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "id": 4
+    },
+    {
+      "title": "Pulp Fiction",
+      "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+      "releaseYear": 1994,
+      "genre": "Crime",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_QL75_UY562_CR3,0,380,562_.jpg",
+      "id": 5
+    },
+    {
+      "title": "Parasite",
+      "description": "A poor family schemes their way into employment with a wealthy household, leading to a chain of deceptions and unexpected consequences.",
+      "releaseYear": 2019,
+      "genre": "Thriller",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BYjk1Y2U4MjQtY2ZiNS00OWQyLWI3MmYtZWUwNmRjYWRiNWNhXkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 6
+    },
+    {
+      "title": "Dune",
+      "description": "Paul Atreides, a brilliant young man, must travel to a dangerous planet to ensure the future of his family and people.",
+      "releaseYear": 2021,
+      "genre": "Sci-Fi",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNWIyNmU5MGYtZDZmNi00ZjAwLWJlYjgtZTc0ZGIxMDE4ZGYwXkEyXkFqcGc@._V1_QL75_UY562_CR1,0,380,562_.jpg",
+      "id": 7
+    },
+    {
+      "title": "The Shawshank Redemption",
+      "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+      "releaseYear": 1994,
+      "genre": "Drama",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+      "id": 8
+    },
+    {
+      "title": "Nolan's Tenet",
+      "description": "Armed with only one word, a time-traveling operative must prevent an armada of attacks on the world.",
+      "releaseYear": 2020,
+      "genre": "Action",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNTIzNDIxMzktMzlkMi00MmUyLWFmMjQtZDgwMjBmOGJmNTI3XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "id": 9
+    },
+    {
+      "title": "Everything Everywhere All at Once",
+      "description": "An aging Chinese-immigrant woman gets sucked into an insane multiverse adventure with her son and ex-husband.",
+      "releaseYear": 2022,
+      "genre": "Fantasy",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BOWNmMzAzZmQtNDQ1NC00Nzk5LTkyMmUtNGI2N2NkOWM4MzEyXkEyXkFqcGc@._V1_QL75_UY562_CR4,0,380,562_.jpg",
+      "id": 10
+    },
+    {
+      "title": "Blade Runner 2049",
+      "description": "A young blade runner's discovery of a long-buried secret puts him on a collision course with Rick Deckard.",
+      "releaseYear": 2017,
+      "genre": "Sci-Fi",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "id": 11
+    },
+    {
+      "title": "Her",
+      "description": "In a near future, a lonely writer develops an unlikely relationship with an operating system designed to meet his every need.",
+      "releaseYear": 2013,
+      "genre": "Romance",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNjIxYTI3NTYtMDJmMC00Yzk0LWFkOGUtODlkMDdkZTFiNTE4XkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 12
+    },
+    {
+      "title": "Goodfellas",
+      "description": "The story of Henry Hill and his life in the mob, covering his relationship with his wife and his three mobster partners.",
+      "releaseYear": 1990,
+      "genre": "Crime",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BN2E5NzI2ZGMtY2VjNi00YTRjLWI1MDUtZGY5OWU1MWJjZjRjXkEyXkFqcGc@._V1_QL75_UX380_CR0,3,380,562_.jpg",
+      "id": 13
+    },
+    {
+      "title": "Arrival",
+      "description": "A linguist works with the military to communicate with alien species and unravels a mystery about the nature of language and time.",
+      "releaseYear": 2016,
+      "genre": "Sci-Fi",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTExMzU0ODcxNDheQTJeQWpwZ15BbWU4MDE1OTI4MzAy._V1_SX300.jpg",
+      "id": 14
+    },
+    {
+      "title": "The Prestige",
+      "description": "After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything.",
+      "releaseYear": 2006,
+      "genre": "Mystery",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTM3MzQ5MjQ5OF5BMl5BanBnXkFtZTcwMTQ3NzMzMw@@._V1_QL75_UY562_CR0,0,380,562_.jpg",
+      "id": 15
+    },
+    {
+      "title": "3 Idiots",
+      "description": "Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently.",
+      "releaseYear": 2009,
+      "genre": "Drama",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNzc4ZWQ3NmYtODE0Ny00YTQ4LTlkZWItNTBkMGQ0MmUwMmJlXkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 16
+    },
+    {
+      "title": "Dangal",
+      "description": "A former wrestler and his two wrestler daughters fight for glory and go against all odds to win at the national level.",
+      "releaseYear": 2016,
+      "genre": "Sports",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTQ4MzQzMzM2Nl5BMl5BanBnXkFtZTgwMTQ1NzU3MDI@._V1_SX300.jpg",
+      "id": 17
+    },
+    {
+      "title": "RRR",
+      "description": "An Indian action film about a bloody fight between two revolutionaries fighting against the system and each other.",
+      "releaseYear": 2022,
+      "genre": "Action",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNWMwODYyMjQtMTczMi00NTQ1LWFkYjItMGJhMWRkY2E3NDAyXkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 18
+    },
+    {
+      "title": "Pushpa: The Rise",
+      "description": "A coolie's son becomes the kingpin of the red sanders smuggling in Tirupati, with a vendetta against a timber mafia.",
+      "releaseYear": 2021,
+      "genre": "Action",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BOWE4YWEyNjYtMWFiNC00M2IzLWE3ZGMtMjQ0ZGEyOWI1YjAzXkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 19
+    },
+    {
+      "title": "Baahubali: The Beginning",
+      "description": "An exiled prince returns to his homeland to fight the injustice caused by his former enemies and reclaim his throne.",
+      "releaseYear": 2015,
+      "genre": "Fantasy",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BM2YxZThhZmEtYzM0Yi00OWYxLWI4NGYtM2Y2ZDNmOGE0ZWQzXkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 20
+    },
+    {
+      "title": "Bajrangi Bhaijaan",
+      "description": "A Muslim man escorts a young Pakistani girl to her home, building a deep bond of affection and compassion.",
+      "releaseYear": 2015,
+      "genre": "Drama",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BYzVjMjZiNGUtZjZiNy00Yzg4LWEzYzYtMmI1NDg5NWNiNjUwXkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 21
+    },
+    {
+      "title": "Raees",
+      "description": "A man rises from poverty to become a notorious smuggler and womanizer, clashing with an honest police officer.",
+      "releaseYear": 2017,
+      "genre": "Crime",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTc2NTYwMTE1NV5BMl5BanBnXkFtZTgwODQ5MzAwMTI@._V1_SX300.jpg",
+      "id": 22
+    },
+    {
+      "title": "Ponniyin Selvan",
+      "description": "An epic historical adventure chronicling the life of the Chola prince and his journey across kingdoms.",
+      "releaseYear": 2022,
+      "genre": "Historical",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BYjI2ZmRmODEtZmEyYS00OWY3LTlhNWEtODhlZjQyNjVlMWU0XkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 23
+    },
+    {
+      "title": "Padmaavat",
+      "description": "A historical drama based on the epic poem of the same name, depicting the courage and sacrifice of a queen.",
+      "releaseYear": 2018,
+      "genre": "Historical",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNjM4MzFhOTItMzNmYy00NTg4LWFjYzItMWY0ZDAxY2NmNTUyXkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 24
+    },
+    {
+      "title": "Paradise",
+      "description": "Nani's upcoming movie",
+      "releaseYear": 2026,
+      "genre": "Thriller",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BY2Y1ZTExYWMtYzNhNS00NGI1LWFmNmYtZTU3ODJmZDg5ZjI4XkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 25
+    },
+    {
+      "title": "Toxic ",
+      "description": "YASH",
+      "releaseYear": 2026,
+      "genre": "Thriller",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BZDk0NDZhNTctNTQ4Ny00YmMzLWIxZDctNWViYmVhYTQ2ZDFhXkEyXkFqcGc@._V1_QL75_UY562_CR15,0,380,562_.jpg",
+      "id": 26
+    },
+    {
+      "title": "Saalar ",
+      "description": "",
+      "releaseYear": 2026,
+      "genre": "Action",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BZDExMmNmMTgtNWU3MS00YzFkLWIwMjMtZmJlMmE3YTI0ZDBmXkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 27
+    },
+    {
+      "title": "Durandhar : The Revenge",
+      "description": "",
+      "releaseYear": 2026,
+      "genre": "Action",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNzdkNjAxNWMtNWY3My00NTI1LTg2YWQtOGI3MDA0NzdhMjEyXkEyXkFqcGc@._V1_.jpg",
+      "id": 28
+    },
+    {
+      "title": "Dunki",
+      "description": "Srk's movie",
+      "releaseYear": 2023,
+      "genre": "Comedy",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BMThhZjM4M2UtYmE1NC00YTMzLTk3ZTAtNmQ1ZmI4YmRmZGE1XkEyXkFqcGc@._V1_SX300.jpg",
+      "id": 29
+    }
+  ],
+  "reviews": [
+    {
+      "movieId": 1,
+      "rating": 5,
+      "reviewText": "Absolutely stunning and thought-provoking.",
+      "authorName": "Alice",
+      "id": 1
+    },
+    {
+      "movieId": 1,
+      "rating": 4,
+      "reviewText": "Complex narrative structure brilliantly executed.",
+      "authorName": "Bob",
+      "id": 2
+    },
+    {
+      "movieId": 2,
+      "rating": 5,
+      "reviewText": "A timeless masterpiece of cinema.",
+      "authorName": "Charlie",
+      "id": 3
+    },
+    {
+      "movieId": 2,
+      "rating": 5,
+      "reviewText": "Exceptional performances across the board.",
+      "authorName": "Diana",
+      "id": 4
+    },
+    {
+      "movieId": 3,
+      "rating": 5,
+      "reviewText": "Visually breathtaking and emotionally powerful.",
+      "authorName": "Eve",
+      "id": 5
+    },
+    {
+      "movieId": 3,
+      "rating": 4,
+      "reviewText": "Ambitious scope with stellar cinematography.",
+      "authorName": "Frank",
+      "id": 6
+    },
+    {
+      "movieId": 4,
+      "rating": 5,
+      "reviewText": "Cillian Murphy delivers a career-best performance.",
+      "authorName": "Grace",
+      "id": 7
+    },
+    {
+      "movieId": 5,
+      "rating": 5,
+      "reviewText": "Tarantino at his finest with sharp dialogue.",
+      "authorName": "Henry",
+      "id": 8
+    },
+    {
+      "movieId": 6,
+      "rating": 5,
+      "reviewText": "Brilliantly crafted social commentary.",
+      "authorName": "Iris",
+      "id": 9
+    },
+    {
+      "movieId": 7,
+      "rating": 4,
+      "reviewText": "Epic scale with stunning visuals.",
+      "authorName": "Jack",
+      "id": 10
+    },
+    {
+      "movieId": 16,
+      "rating": 5,
+      "reviewText": "A heartfelt and inspiring story about friendship.",
+      "authorName": "Kavya",
+      "id": 11
+    },
+    {
+      "movieId": 16,
+      "rating": 5,
+      "reviewText": "Aamir Khan's best performance.",
+      "authorName": "Kumar",
+      "id": 12
+    },
+    {
+      "movieId": 17,
+      "rating": 5,
+      "reviewText": "An intense sports drama with raw emotion.",
+      "authorName": "Priya",
+      "id": 13
+    },
+    {
+      "movieId": 18,
+      "rating": 5,
+      "reviewText": "Action cinema at its finest with heart.",
+      "authorName": "Arjun",
+      "id": 14
+    },
+    {
+      "movieId": 19,
+      "rating": 5,
+      "reviewText": "A stylish and gripping thriller.",
+      "authorName": "Divya",
+      "id": 15
+    },
+    {
+      "movieId": 20,
+      "rating": 5,
+      "reviewText": "Epic fantasy adventure with grandeur.",
+      "authorName": "Ramesh",
+      "id": 16
+    },
+    {
+      "movieId": 21,
+      "rating": 5,
+      "reviewText": "Touching and beautiful portrayal of kindness.",
+      "authorName": "Sneha",
+      "id": 17
+    },
+    {
+      "movieId": 22,
+      "rating": 4,
+      "reviewText": "Brilliant storytelling with great cinematography.",
+      "authorName": "Vikram",
+      "id": 18
+    },
+    {
+      "movieId": 23,
+      "rating": 5,
+      "reviewText": "A stunning historical epic.",
+      "authorName": "Anjali",
+      "id": 19
+    },
+    {
+      "movieId": 24,
+      "rating": 5,
+      "reviewText": "Majestic production with powerful performances.",
+      "authorName": "Rohan",
+      "id": 20
+    },
+    {
+      "movieId": 1,
+      "rating": 5,
+      "reviewText": "nice",
+      "authorName": "PARTH",
+      "id": 21
+    },
+    {
+      "movieId": 25,
+      "rating": 5,
+      "reviewText": "Nani's upcoming movie",
+      "authorName": "PARTH",
+      "id": 22
+    },
+    {
+      "movieId": 25,
+      "rating": 3,
+      "reviewText": "bakwass",
+      "authorName": "Mridul",
+      "id": 23
+    },
+    {
+      "movieId": 1,
+      "rating": 5,
+      "reviewText": "Nice",
+      "authorName": "Manik",
+      "id": 24
+    },
+    {
+      "movieId": 2,
+      "rating": 5,
+      "reviewText": "nice",
+      "authorName": "sai ",
+      "id": 25
+    },
+    {
+      "movieId": 1,
+      "rating": 5,
+      "reviewText": "Nice",
+      "authorName": "Nitish ",
+      "id": 26
+    },
+    {
+      "movieId": 3,
+      "rating": 5,
+      "reviewText": "dskjbfdf",
+      "authorName": "djfhd",
+      "id": 27
+    },
+    {
+      "movieId": 29,
+      "rating": 5,
+      "reviewText": "jkdsbvdkhb",
+      "authorName": "rsjghzdrhg",
+      "id": 28
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "parth1562.becse24@chitkara.edu.in",
+      "name": "Parth",
+      "password": "123456"
+    }
+  ],
+  "movieIdCounter": 30,
+  "reviewIdCounter": 29,
+  "userIdCounter": 2
+}
