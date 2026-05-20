@@ -1,0 +1,14 @@
+<section class="page-head">
+  <h1>🔥 Trending now</h1>
+  <p class="muted">Calculated from average rating, total reviews, and recent activity.</p>
+</section>
+
+<% if (!movies.length) { %>
+  <div class="empty">No trending data yet — go review some films!</div>
+<% } else { %>
+  <div class="row__grid">
+    <% movies.forEach((movie) => { %>
+      <%- include('../partials/movie-card', { movie }) %>
+    <% }) %>
+  </div>
+<% } %>

@@ -1,0 +1,86 @@
+<article class="movie-detail" data-movie-id="<%= movie.id || movie._id %>">
+  <header class="movie-detail__head" style="background-image: linear-gradient(180deg, rgba(8,12,24,0.55), rgba(8,12,24,0.95)), url('<%= movie.imageUrl || movie.poster || 'https://images.unsplash.com/photo-1489599735734-79b4af4cab1d?auto=format&fit=crop&w=900&q=80' %>')">
+    <div class="movie-detail__head-inner">
+      <img class="movie-detail__poster" src="<%= movie.imageUrl || movie.poster || 'https://images.unsplash.com/photo-1489599735734-79b4af4cab1d?auto=format&fit=crop&w=900&q=80' %>" alt="<%= movie.title %> poster" />
+      <div class="movie-detail__info">
+        <h1><%= movie.title %> <span class="muted">(<%= movie.releaseYear %>)</span></h1>
+        <p class="movie-detail__meta">
+          <span class="badge"><%= movie.genre %></span>
+          <% if (movie.durationMinutes) { %><span class="badge"><%= movie.durationMinutes %> min</span><% } %>
+          <span class="badge badge--rating">★ <%= (movie.averageRating || 0).toFixed(1) %> <span class="muted">(<%= movie.reviewCount %>)</span></span>
+        </p>
+        <% if (movie.director) { %><p><strong>Directed by</strong> <%= movie.director %></p><% } %>
+        <% if (movie.cast && movie.cast.length) { %><p><strong>Starring</strong> <%= movie.cast.join(', ') %></p><% } %>
+        <p class="movie-detail__desc"><%= movie.description %></p>
+        <% if (movie.trailerUrl) { %>
+          <a class="btn btn--primary" href="<%= movie.trailerUrl %>" target="_blank" rel="noreferrer">▶ Watch trailer</a>
+        <% } %>
+      </div>
+    </div>
+  </header>
+
+  <section class="reviews">
+    <div class="reviews__head">
+      <h2>Community reviews <span class="muted" id="review-count">(<%= reviews.length %>)</span></h2>
+    </div>
+
+    <% if (currentUser) { %>
+      <form id="review-form" class="review-form" novalidate>
+        <h3><%= myReview ? 'Update your review' : 'Write a review' %></h3>
+        <div class="review-form__rating" role="radiogroup" aria-label="Rating">
+          <% for (let i = 5; i >= 1; i--) { %>
+            <input type="radio" id="star-<%= i %>" name="rating" value="<%= i %>" <%= myReview && myReview.rating === i ? 'checked' : (i === 5 && !myReview ? 'checked' : '') %> />
+            <label for="star-<%= i %>">★</label>
+          <% } %>
+        </div>
+        <textarea name="text" rows="4" maxlength="4000" required placeholder="What did you think?"><%= myReview ? myReview.text : '' %></textarea>
+        <div class="review-form__actions">
+          <button class="btn btn--primary" type="submit"><%= myReview ? 'Save changes' : 'Post review' %></button>
+          <% if (myReview) { %>
+            <button class="btn btn--danger" type="button" id="delete-review" data-id="<%= myReview.id || myReview._id %>">Delete</button>
+          <% } %>
+        </div>
+        <p class="review-form__error" hidden></p>
+      </form>
+    <% } else { %>
+      <p class="reviews__signin"><a href="<%= base %>login?next=/movies/<%= movie.id || movie._id %>">Sign in</a> to leave a review.</p>
+    <% } %>
+
+    <ul class="reviews__list" id="reviews-list">
+      <% reviews.forEach((r) => { %>
+        <li class="review" data-review-id="<%= r.id || r._id %>">
+          <header class="review__head">
+            <div>
+              <strong><%= r.author && r.author.name ? r.author.name : 'Anonymous' %></strong>
+              <span class="review__rating">★ <%= r.rating %>/5</span>
+              <% if (r.sentimentLabel) { %>
+                <span class="badge badge--sentiment-<%= r.sentimentLabel %>" style="margin-left: 10px; font-size: 0.7rem; text-transform: uppercase;">
+                  <%= r.sentimentLabel === 'positive' ? '😊 Positive' : (r.sentimentLabel === 'negative' ? '😞 Negative' : '😐 Neutral') %>
+                </span>
+              <% } %>
+            </div>
+            <time><%= new Date(r.createdAt).toLocaleDateString() %></time>
+          </header>
+          <p class="review__text"><%= r.text %></p>
+          <div class="review__actions">
+            <% 
+              const isUpvoted = currentUser && r.upvotes && r.upvotes.some(id => id.toString() === currentUser.id);
+              const isDownvoted = currentUser && r.downvotes && r.downvotes.some(id => id.toString() === currentUser.id);
+            %>
+            <button class="vote vote--up <%= isUpvoted ? 'is-active' : '' %>" data-id="<%= r.id || r._id %>" data-vote="up">
+              <i class="fas fa-thumbs-up"></i>
+              <span class="vote__count"><%= r.upvoteCount || (r.upvotes ? r.upvotes.length : 0) %></span>
+            </button>
+            <button class="vote vote--down <%= isDownvoted ? 'is-active' : '' %>" data-id="<%= r.id || r._id %>" data-vote="down">
+              <i class="fas fa-thumbs-down"></i>
+              <span class="vote__count"><%= r.downvoteCount || (r.downvotes ? r.downvotes.length : 0) %></span>
+            </button>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+    <% if (!reviews.length) { %>
+      <p class="empty" id="no-reviews">No reviews yet. Be the first!</p>
+    <% } %>
+  </section>
+</article>

@@ -1,0 +1,179 @@
+<section class="subscribe-section container">
+  <div class="subscribe-card">
+    <div class="subscribe-card__header">
+      <h2 class="subscribe-card__title">FilmFusion Premium</h2>
+      <p class="subscribe-card__subtitle">Experience cinema like never before</p>
+    </div>
+
+    <div class="subscribe-card__price">
+      <span class="currency">₹</span>
+      <span class="amount">99</span>
+      <span class="period">/ month</span>
+    </div>
+
+    <ul class="subscribe-card__features">
+      <li><i class="fas fa-check"></i> Exclusive Premium Badge</li>
+      <li><i class="fas fa-check"></i> Private Discussions</li>
+      <li><i class="fas fa-check"></i> Interactive Community Polls</li>
+      <li><i class="fas fa-check"></i> Top Reviewers Club Access</li>
+      <li><i class="fas fa-check"></i> Priority Support</li>
+      <li><i class="fas fa-check"></i> Ad-free Experience</li>
+    </ul>
+
+    <button id="rzp-button" class="btn btn--primary btn--large btn--block">
+      Pay with Razorpay / UPI
+    </button>
+    
+    <p class="subscribe-card__footer">
+      Safe & Secure checkout powered by Razorpay.
+    </p>
+  </div>
+</section>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.getElementById('rzp-button').onclick = async function(e) {
+  e.preventDefault();
+
+  try {
+    // 1. Create Order on Backend
+    const res = await fetch('/api/subscriptions/create-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    
+    const order = await res.json();
+    if (!res.ok) throw new Error(order.message || 'Failed to create order');
+
+    // 2. Handle Mock Order (if keys are placeholders)
+    if (order.id.startsWith('order_mock_')) {
+      const verifyRes = await fetch('/api/subscriptions/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ razorpay_order_id: order.id })
+      });
+      const verifyData = await verifyRes.json();
+      if (verifyData.ok) {
+        alert('Mock Payment Successful! (Using developer placeholders)');
+        window.location.href = '/profile';
+      }
+      return;
+    }
+
+    // 3. Open Razorpay Checkout (Real mode)
+    const options = {
+      key: order.key,
+      amount: order.amount,
+      currency: order.currency,
+      name: "FilmFusion",
+      description: "Premium Subscription",
+      order_id: order.id,
+      handler: async function (response) {
+        // 3. Verify Payment on Backend
+        const verifyRes = await fetch('/api/subscriptions/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature
+          })
+        });
+
+        const verifyData = await verifyRes.json();
+        if (verifyData.ok) {
+          alert('Subscription successful! Redirecting to profile...');
+          window.location.href = '/profile';
+        } else {
+          alert('Payment verification failed: ' + verifyData.message);
+        }
+      },
+      prefill: {
+        name: "<%= currentUser.name %>",
+        email: "<%= currentUser.email %>"
+      },
+      theme: {
+        color: "#E50914"
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+  } catch (err) {
+    console.error(err);
+    alert('Error: ' + err.message);
+  }
+};
+</script>
+
+<style>
+.subscribe-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: var(--spacing-xl) 0;
+}
+
+.subscribe-card {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.subscribe-card__header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.subscribe-card__title {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.subscribe-card__price {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-lg);
+}
+
+.subscribe-card__price .currency {
+  font-size: 1.5rem;
+  vertical-align: super;
+}
+
+.subscribe-card__price .period {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.subscribe-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-xl) 0;
+  text-align: left;
+}
+
+.subscribe-card__features li {
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.subscribe-card__features i {
+  color: #4CAF50;
+}
+
+.subscribe-card__footer {
+  margin-top: var(--spacing-md);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+</style>

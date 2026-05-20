@@ -1,0 +1,32 @@
+<section class="hero">
+  <div class="hero__content">
+    <h1>Where film lovers gather.</h1>
+    <p>FilmFusion is a community-driven movie review platform — discover what's trending, share your take, and find your next favourite film.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="<%= base %>movies">Browse the catalogue</a>
+      <a class="btn btn--ghost" href="<%= base %>trending">See what's trending</a>
+    </div>
+  </div>
+</section>
+
+<% 
+function renderRow(label, items) { 
+  if (!items || items.length === 0) return;
+%>
+  <section class="row">
+    <div class="row__head">
+      <h2><%= label %></h2>
+    </div>
+    <div class="row__grid">
+      <% items.forEach((movie) => { %>
+        <%- include('../partials/movie-card', { movie }) %>
+      <% }) %>
+    </div>
+  </section>
+<% } %>
+
+<% 
+renderRow('🔥 Trending now', trending);
+renderRow('🏆 Top rated', topRated);
+renderRow('🎬 Just added', latest);
+%>

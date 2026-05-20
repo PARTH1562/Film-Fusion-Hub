@@ -1,0 +1,67 @@
+<div class="polls-page container">
+  <header class="page-header">
+    <h1>Community Polls</h1>
+    <p>Voice your opinion on current film trends.</p>
+  </header>
+
+  <div class="polls-list">
+    <% if (!polls.length) { %>
+      <div class="card" style="padding: 20px; text-align: center;">
+        <p>No active polls at the moment. Check back soon!</p>
+        <p class="muted">Note: Admin can create polls via the database or a future admin panel.</p>
+      </div>
+    <% } else { %>
+      <% polls.forEach(poll => { %>
+        <article class="card poll-card">
+          <h3 class="poll-card__question"><%= poll.question %></h3>
+          <form action="/polls/vote" method="post" class="poll-card__options">
+            <input type="hidden" name="pollId" value="<%= poll._id %>">
+            <% poll.options.forEach(option => { %>
+              <div class="poll-option">
+                <button type="submit" name="optionId" value="<%= option._id %>" class="poll-option__btn">
+                  <span class="poll-option__text"><%= option.text %></span>
+                  <span class="poll-option__votes"><%= option.votes %> votes</span>
+                </button>
+              </div>
+            <% }) %>
+          </form>
+        </article>
+      <% }) %>
+    <% } %>
+  </div>
+</div>
+
+<style>
+.poll-card {
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+.poll-card__question {
+  margin-bottom: var(--spacing-md);
+}
+.poll-option {
+  margin-bottom: var(--spacing-sm);
+}
+.poll-option__btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+}
+.poll-option__btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-bg-alt);
+}
+.poll-option__votes {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+</style>

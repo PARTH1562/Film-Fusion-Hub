@@ -1,0 +1,418 @@
+<div class="discussions-page">
+  <div class="hero-glow"></div>
+  
+  <header class="discussions-hero container">
+    <div class="hero-content">
+      <div class="badge-premium-pill">
+        <span class="pulsating-dot"></span>
+        PREMIUM EXCLUSIVE
+      </div>
+      <h1 class="ultra-title">The Inner Circle</h1>
+      <p class="hero-desc">Where the world's top critics dissect cinema's deepest mysteries.</p>
+    </div>
+  </header>
+
+  <div class="main-content container">
+    <div class="discussions-layout">
+      <!-- Create Post Section -->
+      <section class="post-creator card-neo">
+        <div class="creator-header">
+          <div class="user-chip">
+            <div class="avatar-mini"><%= currentUser.name.charAt(0).toUpperCase() %></div>
+            <span>New Discussion</span>
+          </div>
+        </div>
+        <form action="/discussions" method="post" class="neo-form">
+          <input type="text" name="title" required minlength="5" maxlength="100" placeholder="Give your theory a striking title..." class="neo-input">
+          <textarea name="content" required minlength="10" maxlength="2000" rows="3" placeholder="Dissect the film here..." class="neo-textarea"></textarea>
+          <div class="form-footer">
+            <div class="formatting-tools">
+              <i class="fas fa-bold"></i>
+              <i class="fas fa-italic"></i>
+              <i class="fas fa-link"></i>
+            </div>
+            <button type="submit" class="btn-neo-primary">
+              <span>Post Thread</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Feed Section -->
+      <section class="discussions-feed">
+        <div class="feed-header">
+          <h2 class="feed-title">Latest Intel</h2>
+          <div class="feed-filters">
+            <span class="filter-chip active">Recent</span>
+            <span class="filter-chip">Trending</span>
+            <span class="filter-chip">Popular</span>
+          </div>
+        </div>
+
+        <% if (!discussions.length) { %>
+          <div class="empty-neon card-neo">
+            <div class="empty-icon-wrap">
+              <i class="fas fa-satellite-dish"></i>
+            </div>
+            <p>Transmission received: The void is empty.</p>
+          </div>
+        <% } else { %>
+          <div class="thread-list">
+            <% discussions.forEach(discussion => { %>
+              <article class="thread-card-neo animate-reveal">
+                <div class="thread-card-neo__body">
+                  <div class="thread-meta">
+                    <span class="thread-author">@<%= discussion.author.name.toLowerCase().replace(/\s+/g, '') %></span>
+                    <span class="thread-time"><%= new Date(discussion.createdAt).toLocaleDateString() %></span>
+                  </div>
+                  <h3 class="thread-title-link"><%= discussion.title %></h3>
+                  <p class="thread-preview"><%= discussion.content.substring(0, 160) %>...</p>
+                </div>
+                <div class="thread-card-neo__footer">
+                  <div class="interaction-group">
+                    <div class="action-item">
+                      <i class="far fa-comment-dots"></i>
+                      <span><%= discussion.comments.length %></span>
+                    </div>
+                    <div class="action-item">
+                      <i class="far fa-heart"></i>
+                      <span>24</span>
+                    </div>
+                    <div class="action-item">
+                      <i class="fas fa-share-alt"></i>
+                    </div>
+                  </div>
+                  <button class="btn-read-more">Analyze <i class="fas fa-chevron-right"></i></button>
+                </div>
+              </article>
+            <% }) %>
+          </div>
+        <% } %>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Modern SaaS / Dark Mode UI */
+:root {
+  --neo-bg: #09090b;
+  --neo-card: #121216;
+  --neo-border: rgba(255, 255, 255, 0.08);
+  --neo-accent: #e50914;
+  --neo-accent-glow: rgba(229, 9, 20, 0.4);
+  --neo-text-main: #f4f4f5;
+  --neo-text-muted: #a1a1aa;
+}
+
+.discussions-page {
+  background-color: var(--neo-bg);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  color: var(--neo-text-main);
+  padding-bottom: 5rem;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(circle, var(--neo-accent-glow) 0%, transparent 70%);
+  filter: blur(60px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.discussions-hero {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 0 3rem 0;
+  text-align: center;
+}
+
+.badge-premium-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  color: gold;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.pulsating-dot {
+  width: 6px;
+  height: 6px;
+  background-color: gold;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+.ultra-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.hero-desc {
+  font-size: 1.25rem;
+  color: var(--neo-text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Layout */
+.discussions-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Neo Cards */
+.card-neo {
+  background: var(--neo-card);
+  border: 1px solid var(--neo-border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Creator Section */
+.post-creator {
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.avatar-mini {
+  width: 32px;
+  height: 32px;
+  background: var(--neo-accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.neo-input, .neo-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.neo-input:focus, .neo-textarea:focus {
+  outline: none;
+}
+
+.neo-input {
+  font-weight: 700;
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--neo-border);
+}
+
+.neo-textarea {
+  resize: none;
+  color: var(--neo-text-muted);
+  font-size: 1rem;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--neo-border);
+}
+
+.formatting-tools {
+  display: flex;
+  gap: 20px;
+  color: var(--neo-text-muted);
+  font-size: 0.9rem;
+}
+
+.btn-neo-primary {
+  background: var(--neo-accent);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-neo-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--neo-accent-glow);
+}
+
+/* Feed Header */
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.feed-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.feed-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-chip {
+  padding: 6px 16px;
+  background: transparent;
+  border: 1px solid var(--neo-border);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--neo-text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-chip.active {
+  background: white;
+  color: black;
+  border-color: white;
+}
+
+/* Thread Card */
+.thread-card-neo {
+  background: var(--neo-card);
+  border: 1px solid var(--neo-border);
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  transition: border-color 0.3s;
+}
+
+.thread-card-neo:hover {
+  border-color: rgba(255,255,255,0.2);
+}
+
+.thread-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: var(--neo-text-muted);
+  margin-bottom: 1rem;
+}
+
+.thread-author {
+  color: var(--neo-accent);
+  font-weight: 700;
+}
+
+.thread-title-link {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.thread-preview {
+  color: var(--neo-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.thread-card-neo__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.interaction-group {
+  display: flex;
+  gap: 20px;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--neo-text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.action-item:hover {
+  color: white;
+}
+
+.btn-read-more {
+  background: transparent;
+  border: none;
+  color: var(--neo-text-main);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Animations */
+.animate-reveal {
+  animation: reveal 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.empty-neon {
+  padding: 4rem;
+  text-align: center;
+}
+
+.empty-icon-wrap {
+  font-size: 3rem;
+  color: var(--neo-border);
+  margin-bottom: 1.5rem;
+}
+</style>

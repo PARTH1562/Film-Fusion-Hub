@@ -1,0 +1,48 @@
+<section class="page-head">
+  <h1>Admin dashboard</h1>
+  <p class="muted">Overview of the FilmFusion catalogue and community.</p>
+</section>
+
+<div class="stats">
+  <div class="stats__card"><span class="stats__value"><%= stats.userCount %></span><span class="stats__label">Users</span></div>
+  <div class="stats__card"><span class="stats__value"><%= stats.movieCount %></span><span class="stats__label">Movies</span></div>
+  <div class="stats__card"><span class="stats__value"><%= stats.reviewCount %></span><span class="stats__label">Reviews</span></div>
+</div>
+
+<div class="admin-grid">
+  <section>
+    <div class="row__head">
+      <h2>Recent reviews</h2>
+      <a href="<%= base %>admin/movies">Manage movies →</a>
+    </div>
+    <ul class="admin-list">
+      <% recentReviews.forEach((r) => { %>
+        <li>
+          <strong><%= r.author ? r.author.name : 'Unknown' %></strong>
+          rated <a href="<%= base %>movies/<%= r.movie ? r.movie._id : '#' %>"><%= r.movie ? r.movie.title : '(deleted)' %></a>
+          <span class="badge">★ <%= r.rating %></span>
+          <span class="muted"><%= new Date(r.createdAt).toLocaleString() %></span>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <section>
+    <div class="row__head"><h2>Top rated</h2><a href="<%= base %>admin/movies">All movies →</a></div>
+    <ul class="admin-list">
+      <% topMovies.forEach((m) => { %>
+        <li>
+          <a href="<%= base %>movies/<%= m._id %>"><%= m.title %></a>
+          <span class="badge">★ <%= m.averageRating.toFixed(1) %></span>
+          <span class="muted"><%= m.reviewCount %> reviews</span>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+</div>
+
+<div class="admin-grid">
+  <a class="admin-cta" href="<%= base %>admin/movies/new">+ Add movie</a>
+  <a class="admin-cta" href="<%= base %>admin/users">Manage users</a>
+  <a class="admin-cta" href="<%= base %>api/docs">Open API docs</a>
+</div>

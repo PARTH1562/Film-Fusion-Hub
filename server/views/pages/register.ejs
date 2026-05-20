@@ -1,0 +1,22 @@
+<section class="auth-card">
+  <h1>Join FilmFusion</h1>
+  <p class="muted">Create a free account to rate, review and discuss films.</p>
+  <% if (error) { %><p class="flash flash--error"><%= error %></p><% } %>
+  <form method="post" action="<%= base %>register" novalidate>
+    <label>
+      <span>Display name</span>
+      <input type="text" name="name" required minlength="2" maxlength="60" value="<%= form.name || '' %>" />
+    </label>
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" required value="<%= form.email || '' %>" autocomplete="email" />
+    </label>
+    <label>
+      <span>Password</span>
+      <input type="password" name="password" required minlength="8" autocomplete="new-password" />
+      <small class="muted">At least 8 characters with a letter and a number.</small>
+    </label>
+    <button class="btn btn--primary btn--block" type="submit">Create account</button>
+  </form>
+  <p class="auth-card__footer">Already have an account? <a href="<%= base %>login">Sign in</a>.</p>
+</section>

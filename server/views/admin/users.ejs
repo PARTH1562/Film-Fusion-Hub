@@ -1,0 +1,48 @@
+<section class="page-head">
+  <h1>Manage users</h1>
+</section>
+
+<form class="filters" method="get" action="<%= base %>admin/users">
+  <input type="search" name="q" value="<%= q %>" placeholder="Search by name or email…" />
+  <button class="btn btn--primary" type="submit">Search</button>
+  <a class="btn btn--ghost" href="<%= base %>admin/users">Reset</a>
+</form>
+
+<table class="admin-table">
+  <thead>
+    <tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th></th></tr>
+  </thead>
+  <tbody>
+    <% users.forEach((u) => { %>
+      <tr data-user-id="<%= u._id %>">
+        <td><%= u.name %></td>
+        <td><%= u.email %></td>
+        <td>
+          <select class="js-user-role" data-id="<%= u._id %>">
+            <option value="user" <%= u.role === 'user' ? 'selected' : '' %>>user</option>
+            <option value="admin" <%= u.role === 'admin' ? 'selected' : '' %>>admin</option>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn--ghost btn--small js-user-toggle" data-id="<%= u._id %>" data-active="<%= u.isActive %>">
+            <%= u.isActive ? 'Active' : 'Disabled' %>
+          </button>
+        </td>
+        <td><%= new Date(u.createdAt).toLocaleDateString() %></td>
+        <td>
+          <% if (currentUser && currentUser.id !== String(u._id)) { %>
+            <button class="btn btn--danger btn--small js-user-delete" data-id="<%= u._id %>">Delete</button>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% if (pagination.totalPages > 1) { %>
+  <nav class="pagination">
+    <% if (pagination.page > 1) { %><a href="?page=<%= pagination.page - 1 %><%= q ? `&q=${encodeURIComponent(q)}` : '' %>">← Previous</a><% } %>
+    <span>Page <%= pagination.page %> of <%= pagination.totalPages %></span>
+    <% if (pagination.page < pagination.totalPages) { %><a href="?page=<%= pagination.page + 1 %><%= q ? `&q=${encodeURIComponent(q)}` : '' %>">Next →</a><% } %>
+  </nav>
+<% } %>

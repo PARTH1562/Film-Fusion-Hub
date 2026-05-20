@@ -1,0 +1,57 @@
+<section class="page-head">
+  <h1>Browse movies</h1>
+  <p class="muted"><%= pagination.total %> film<%= pagination.total === 1 ? '' : 's' %> in the catalogue</p>
+</section>
+
+<form class="filters" method="get" action="<%= base %>movies">
+  <input type="hidden" name="page" value="1" />
+  <input type="search" name="q" value="<%= filters.q %>" placeholder="Title, director, plot…" />
+  <select name="genre" onchange="this.form.submit()">
+    <option value="">All genres</option>
+    <% genres.forEach((g) => { %>
+      <option value="<%= g %>" <%= filters.genre === g ? 'selected' : '' %>><%= g %></option>
+    <% }) %>
+  </select>
+  <input type="number" name="year" value="<%= filters.year %>" min="1888" max="2100" placeholder="Year" />
+  <select name="minRating" onchange="this.form.submit()">
+    <option value="">Any rating</option>
+    <% [1,2,3,4,4.5].forEach((r) => { %>
+      <option value="<%= r %>" <%= String(filters.minRating) === String(r) ? 'selected' : '' %>>★ <%= r %>+</option>
+    <% }) %>
+  </select>
+  <select name="sort" onchange="this.form.submit()">
+    <% [['newest','Newest first'],['oldest','Oldest first'],['rating','Highest rated'],['popular','Most reviewed'],['title','Title (A→Z)']].forEach((opt) => { %>
+      <option value="<%= opt[0] %>" <%= filters.sort === opt[0] ? 'selected' : '' %>><%= opt[1] %></option>
+    <% }) %>
+  </select>
+  <button class="btn btn--primary" type="submit">Apply</button>
+  <a class="btn btn--ghost" href="<%= base %>movies">Reset</a>
+</form>
+
+<% if (!movies.length) { %>
+  <div class="empty">No movies match those filters.</div>
+<% } else { %>
+  <div class="row__grid">
+    <% movies.forEach((movie) => { %>
+      <%- include('../partials/movie-card', { movie }) %>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (pagination.totalPages > 1) { %>
+  <nav class="pagination">
+    <% function buildUrl(p) {
+      const params = new URLSearchParams();
+      Object.entries(filters).forEach(([k, v]) => { if (v) params.set(k, v); });
+      params.set('page', p);
+      return `${base}movies?${params.toString()}`;
+    } %>
+    <% if (pagination.page > 1) { %>
+      <a href="<%= buildUrl(pagination.page - 1) %>">← Previous</a>
+    <% } %>
+    <span>Page <%= pagination.page %> of <%= pagination.totalPages %></span>
+    <% if (pagination.page < pagination.totalPages) { %>
+      <a href="<%= buildUrl(pagination.page + 1) %>">Next →</a>
+    <% } %>
+  </nav>
+<% } %>

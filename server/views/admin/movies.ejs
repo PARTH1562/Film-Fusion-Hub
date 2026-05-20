@@ -1,0 +1,45 @@
+<section class="page-head">
+  <h1>Manage movies</h1>
+  <a class="btn btn--primary" href="<%= base %>admin/movies/new">+ Add movie</a>
+</section>
+
+<form class="filters" method="get" action="<%= base %>admin/movies">
+  <input type="search" name="q" value="<%= q %>" placeholder="Search by title…" />
+  <button class="btn btn--primary" type="submit">Search</button>
+  <a class="btn btn--ghost" href="<%= base %>admin/movies">Reset</a>
+</form>
+
+<table class="admin-table">
+  <thead>
+    <tr><th>Title</th><th>Year</th><th>Genre</th><th>Rating</th><th>Reviews</th><th></th></tr>
+  </thead>
+  <tbody>
+    <% movies.forEach((m) => { %>
+      <tr>
+        <td><a href="<%= base %>movies/<%= m._id %>"><%= m.title %></a></td>
+        <td><%= m.releaseYear %></td>
+        <td><%= m.genre %></td>
+        <td>★ <%= m.averageRating.toFixed(1) %></td>
+        <td><%= m.reviewCount %></td>
+        <td class="admin-table__actions">
+          <a class="btn btn--ghost btn--small" href="<%= base %>admin/movies/<%= m._id %>/edit">Edit</a>
+          <form method="post" action="<%= base %>admin/movies/<%= m._id %>/delete" onsubmit="return confirm('Delete this movie and all its reviews?');">
+            <button class="btn btn--danger btn--small" type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% if (pagination.totalPages > 1) { %>
+  <nav class="pagination">
+    <% if (pagination.page > 1) { %>
+      <a href="?page=<%= pagination.page - 1 %><%= q ? `&q=${encodeURIComponent(q)}` : '' %>">← Previous</a>
+    <% } %>
+    <span>Page <%= pagination.page %> of <%= pagination.totalPages %></span>
+    <% if (pagination.page < pagination.totalPages) { %>
+      <a href="?page=<%= pagination.page + 1 %><%= q ? `&q=${encodeURIComponent(q)}` : '' %>">Next →</a>
+    <% } %>
+  </nav>
+<% } %>

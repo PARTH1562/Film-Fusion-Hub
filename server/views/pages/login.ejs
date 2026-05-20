@@ -1,0 +1,17 @@
+<section class="auth-card">
+  <h1>Welcome back</h1>
+  <p class="muted">Sign in to leave reviews and follow the conversation.</p>
+  <% if (error) { %><p class="flash flash--error"><%= error %></p><% } %>
+  <form method="post" action="<%= base %>login<%= currentQuery && currentQuery.next ? `?next=${encodeURIComponent(currentQuery.next)}` : '' %>" novalidate>
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" required value="<%= form.email || '' %>" autocomplete="email" />
+    </label>
+    <label>
+      <span>Password</span>
+      <input type="password" name="password" required minlength="8" autocomplete="current-password" />
+    </label>
+    <button class="btn btn--primary btn--block" type="submit">Sign in</button>
+  </form>
+  <p class="auth-card__footer">Don't have an account? <a href="<%= base %>register">Create one</a>.</p>
+</section>

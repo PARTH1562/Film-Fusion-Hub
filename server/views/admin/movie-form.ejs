@@ -1,0 +1,22 @@
+<section class="page-head">
+  <h1><%= movie && movie._id ? 'Edit movie' : 'Add movie' %></h1>
+  <a class="btn btn--ghost" href="<%= base %>admin/movies">← Back</a>
+</section>
+
+<% if (error) { %><p class="flash flash--error"><%= error %></p><% } %>
+
+<form class="movie-form" method="post" action="<%= movie && movie._id ? `${base}admin/movies/${movie._id}/edit` : `${base}admin/movies/new` %>">
+  <label><span>Title</span><input type="text" name="title" required value="<%= movie ? (movie.title || '') : '' %>" /></label>
+  <label><span>Release year</span><input type="number" name="releaseYear" required min="1888" max="2100" value="<%= movie ? (movie.releaseYear || '') : '' %>" /></label>
+  <label><span>Genre</span><input type="text" name="genre" required value="<%= movie ? (movie.genre || '') : '' %>" /></label>
+  <label><span>Director</span><input type="text" name="director" value="<%= movie ? (movie.director || '') : '' %>" /></label>
+  <label><span>Cast (comma-separated)</span><input type="text" name="cast" value="<%= movie && movie.cast ? (Array.isArray(movie.cast) ? movie.cast.join(', ') : movie.cast) : '' %>" /></label>
+  <label><span>Duration (minutes)</span><input type="number" name="durationMinutes" min="1" max="600" value="<%= movie ? (movie.durationMinutes || '') : '' %>" /></label>
+  <label><span>Poster URL</span><input type="url" name="imageUrl" required value="<%= movie ? (movie.imageUrl || '') : '' %>" /></label>
+  <label><span>Trailer URL</span><input type="url" name="trailerUrl" value="<%= movie ? (movie.trailerUrl || '') : '' %>" /></label>
+  <label class="movie-form__full"><span>Description</span><textarea name="description" rows="5" required><%= movie ? (movie.description || '') : '' %></textarea></label>
+  <div class="movie-form__actions">
+    <button class="btn btn--primary" type="submit">Save</button>
+    <a class="btn btn--ghost" href="<%= base %>admin/movies">Cancel</a>
+  </div>
+</form>

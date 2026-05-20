@@ -1,0 +1,50 @@
+<section class="profile">
+  <header class="profile__head">
+    <div class="profile__avatar"><%= profile.name.charAt(0).toUpperCase() %></div>
+    <div>
+      <h1><%= profile.name %></h1>
+      <p class="muted"><%= profile.email %> · joined <%= new Date(profile.createdAt).toLocaleDateString() %></p>
+      <% if (profile.subscriptionPlan === 'premium') { %>
+        <span class="badge badge--premium" style="background: gold; color: black; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">PREMIUM</span>
+      <% } %>
+      <% if (profile.bio) { %><p><%= profile.bio %></p><% } %>
+    </div>
+  </header>
+
+  <h2>Your reviews <span class="muted">(<%= reviews.length %>)</span></h2>
+  <% if (!reviews.length) { %>
+    <div class="empty">You haven't reviewed any films yet. <a href="<%= base %>movies">Start browsing</a>.</div>
+  <% } else { %>
+    <ul class="profile__reviews">
+      <% reviews.forEach((r) => { %>
+        <li>
+          <a class="profile__review" href="<%= base %>movies/<%= r.movie._id %>">
+            <img src="<%= r.movie.imageUrl %>" alt="" />
+            <div>
+              <strong><%= r.movie.title %></strong>
+              <span class="muted">★ <%= r.rating %>/5 · <%= new Date(r.createdAt).toLocaleDateString() %></span>
+              <p><%= r.text.slice(0, 200) %><%= r.text.length > 200 ? '…' : '' %></p>
+            </div>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <h2>Your movies <span class="muted">(<%= ownedMovies.length %>)</span></h2>
+  <% if (!ownedMovies.length) { %>
+    <div class="empty">You haven't added any movies yet. <a href="<%= base %>admin/movies">Add one</a>.</div>
+  <% } else { %>
+    <div class="profile__movies">
+      <% ownedMovies.forEach((movie) => { %>
+        <a class="profile__movie-card" href="<%= base %>movies/<%= movie._id %>">
+          <img class="profile__movie-poster" src="<%= movie.imageUrl || movie.poster || 'https://images.unsplash.com/photo-1489599735734-79b4af4cab1d?auto=format&fit=crop&w=900&q=80' %>" alt="<%= movie.title %> poster" />
+          <div class="profile__movie-info">
+            <strong class="profile__movie-title"><%= movie.title %></strong>
+            <div class="profile__movie-meta"><%= movie.releaseYear %></div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  <% } %>
+</section>

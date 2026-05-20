@@ -1,0 +1,78 @@
+<div class="leaderboard-page container">
+  <header class="page-header">
+    <h1>Top Reviewers Club</h1>
+    <p>Honoring our most dedicated film critics.</p>
+  </header>
+
+  <div class="card leaderboard">
+    <table class="leaderboard__table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Reviewer</th>
+          <th>Reviews</th>
+          <th>Avg Rating Given</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% reviewers.forEach((reviewer, index) => { %>
+          <tr>
+            <td class="rank">#<%= index + 1 %></td>
+            <td class="reviewer">
+              <div class="reviewer__info">
+                <div class="reviewer__avatar"><%= reviewer.userDetails.name.charAt(0).toUpperCase() %></div>
+                <strong><%= reviewer.userDetails.name %></strong>
+              </div>
+            </td>
+            <td><%= reviewer.reviewCount %></td>
+            <td>★ <%= reviewer.avgRating.toFixed(1) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+.leaderboard {
+  overflow-x: auto;
+}
+.leaderboard__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.leaderboard__table th,
+.leaderboard__table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+.leaderboard__table th {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+.rank {
+  font-weight: bold;
+  color: var(--color-primary);
+  width: 60px;
+}
+.reviewer__info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.reviewer__avatar {
+  width: 32px;
+  height: 32px;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+</style>
