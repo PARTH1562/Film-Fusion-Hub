@@ -1,0 +1,17 @@
+<article class="movie-card">
+  <a class="movie-card__link" href="<%= base %>movies/<%= movie.id || movie._id %>">
+    <div class="movie-card__poster" style="background-image: url('<%= movie.imageUrl || movie.poster || 'https://images.unsplash.com/photo-1489599735734-79b4af4cab1d?auto=format&fit=crop&w=900&q=80' %>')">
+      <% if (typeof movie.trendingScore !== 'undefined') { %>
+        <span class="badge badge--trending">★ <%= movie.trendingScore %></span>
+      <% } %>
+      <span class="badge badge--year"><%= movie.releaseYear %></span>
+    </div>
+    <div class="movie-card__body">
+      <h3 class="movie-card__title"><%= movie.title %></h3>
+      <p class="movie-card__meta">
+        <span><%= movie.genre %></span>
+        <span class="movie-card__rating">★ <%= (movie.averageRating || 0).toFixed(1) %> <span class="muted">(<%= movie.reviewCount || 0 %>)</span></span>
+      </p>
+    </div>
+  </a>
+</article>

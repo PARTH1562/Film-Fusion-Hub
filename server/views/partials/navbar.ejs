@@ -1,0 +1,56 @@
+<nav class="navbar">
+  <div class="navbar__inner container">
+    <a class="navbar__brand" href="<%= base %>">
+      <span class="navbar__logo">FF</span>
+      <span>FilmFusion</span>
+    </a>
+    <form class="navbar__search" action="<%= base %>movies" method="get" role="search">
+      <input
+        type="search"
+        name="q"
+        placeholder="Search films, directors, plots…"
+        value="<%= typeof filters !== 'undefined' && filters.q ? filters.q : '' %>"
+        aria-label="Search movies"
+      />
+    </form>
+    <ul class="navbar__nav">
+      <li><a href="<%= base %>movies">Browse</a></li>
+      <li><a href="<%= base %>trending">Trending</a></li>
+      <li><a href="<%= base %>discussions">Discussions</a></li>
+      <li><a href="<%= base %>polls">Polls</a></li>
+      <li><a href="<%= base %>top-reviewers">Reviewers</a></li>
+      <% if (currentUser) { %>
+        <li class="navbar__dropdown-wrapper">
+          <button class="navbar__user-btn" id="user-dropdown-trigger" aria-label="User Menu">
+            <i class="fas fa-user-circle"></i>
+          </button>
+          <div class="navbar__dropdown" id="user-dropdown">
+            <div class="dropdown-header">
+              <strong><%= currentUser.name %></strong>
+              <% if (currentUser.subscriptionPlan === 'premium') { %>
+                <span class="premium-tag">PREMIUM</span>
+              <% } %>
+            </div>
+            <hr>
+            <a href="<%= base %>profile"><i class="fas fa-id-card"></i> Profile</a>
+            <% if (currentUser.subscriptionPlan !== 'premium') { %>
+              <a href="<%= base %>subscribe" style="color: gold;"><i class="fas fa-crown"></i> Go Premium</a>
+            <% } %>
+            <a href="<%= base %>discussions"><i class="fas fa-comments"></i> Discussions</a>
+            <a href="<%= base %>polls"><i class="fas fa-poll"></i> Polls</a>
+            <a href="<%= base %>top-reviewers"><i class="fas fa-award"></i> Reviewers</a>
+            <% if (currentUser.role === 'admin') { %>
+              <a href="<%= base %>admin" class="navbar__admin"><i class="fas fa-user-shield"></i> Admin Panel</a>
+            <% } %>
+            <hr>
+            <form action="<%= base %>logout" method="post">
+              <button type="submit" class="dropdown-logout-btn"><i class="fas fa-sign-out-alt"></i> Sign out</button>
+            </form>
+          </div>
+        </li>
+      <% } else { %>
+        <li><a class="btn btn--primary" href="<%= base %>register">Join free</a></li>
+      <% } %>
+    </ul>
+  </div>
+</nav>
